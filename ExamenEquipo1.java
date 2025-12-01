@@ -23,6 +23,8 @@ public class ExamenEquipo1 {
       System.out.println("\n----- MENU -----");
       System.out.println("1. Serie de Fibonacci");
       System.out.println("2. Función de Ackermann");
+      System.out.println("3. Conversor de numeros enteros a Romanos");
+      System.out.println("4. Función de la Torre de Hanoi");
       System.out.println("5. Salir");
       System.out.print("Elige una opción: ");
 
@@ -87,6 +89,15 @@ public class ExamenEquipo1 {
           }
           break;
         }
+        case 3:
+          System.out.println("Agregar funcionalidad de Numeros Romanos");
+          continuar = false;
+          break;
+        
+        case 4:
+          System.out.println("Agregar Funcionalidad de Torre de Hanoi");
+          continuar = false;
+          break;
 
         case 5:
           System.out.println("Saliendo del programa...");
