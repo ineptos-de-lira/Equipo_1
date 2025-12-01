@@ -71,5 +71,3 @@ public class ExamenEquipo1 {
     for (int num : serie) {
       System.out.println(num);
     } 
-  }
-}
