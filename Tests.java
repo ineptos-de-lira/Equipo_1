@@ -105,37 +105,29 @@ public class Tests {
         "Debe lanzar IllegalArgumentException si m > 3");
   }
 
-  // Variables necesarias para capturar la salida de la consola (System.out)
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
-    // --- Configuración para capturar System.out ---
     
     @BeforeEach
     public void setUpStreams() {
-        // Redirige System.out a nuestro ByteArrayOutputStream antes de cada prueba
         System.setOut(new PrintStream(outContent));
     }
 
     @AfterEach
     public void restoreStreams() {
-        // Restaura el System.out original después de cada prueba
         System.setOut(originalOut);
     }
     
     // ======================= PRUEBAS TORRE DE HANÓI =======================
     
-    /**
-     * Prueba que el número total de movimientos sea correcto para 5 discos (31 movimientos).
-     */
+    
     @Test
     public void testHanoiNumeroDeMovimientosPara5Discos() {
         ExamenEquipo1.torreDeHanoi(5, 'A', 'C', 'B');
         
-        // El número total de movimientos es 2^5 - 1 = 31
         long expectedMoves = (long) (Math.pow(2, 5) - 1);
         
-        // Contamos cuántas líneas (movimientos) se imprimieron
         long actualMoves = outContent.toString().lines().count();
         
         assertEquals(expectedMoves, actualMoves, 
