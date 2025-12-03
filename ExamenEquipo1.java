@@ -90,10 +90,27 @@ public class ExamenEquipo1 {
 					break;
 				}
 				
-				case 3:
-					System.out.println("Agregar funcionalidad de Numeros Romanos");
+				case 3: {
+					System.out.println("\n--- Conversor de Números Enteros a Romanos ---");
+					System.out.print("Introduce un número entero entre 1 y 3999: ");
+
+					if (scanner.hasNextInt()) {
+						int numero = scanner.nextInt();
+
+						if (numero >= 1 && numero <= 3999) {
+							String romano = convertirARomano(numero);
+							System.out.println("Número romano: " + romano);
+						} else {
+							System.out.println("Error: El número debe estar entre 1 y 3999.");
+						}
+					} else {
+						System.out.println("Error: Debes introducir un número entero válido.");
+						scanner.next();
+					}
+
 					System.out.println("Volviendo al menú...");
 					break;
+				}
 
 
 				case 4: {
@@ -198,5 +215,20 @@ public class ExamenEquipo1 {
 		} else {
 			return ackermann(m - 1, (int) ackermann(m, n - 1));
 		}
+	}
+	public static String convertirARomano(int numero) {
+		int[] valores = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+		String[] romanos = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+
+		String resultado = "";
+
+		for (int i = 0; i < valores.length; i++) {
+			while (numero >= valores[i]) {
+				numero -= valores[i];
+				resultado += romanos[i];
+			}
+		}
+
+		return resultado;
 	}
 }
