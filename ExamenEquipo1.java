@@ -100,9 +100,7 @@ public class ExamenEquipo1 {
 						if (numero >= 1 && numero <= 3999) {
 							String romano = convertirARomano(numero);
 							System.out.println("Número romano: " + romano);
-						} else {
-							System.out.println("Error: El número debe estar entre 1 y 3999.");
-						}
+						} 
 					} else {
 						System.out.println("Error: Debes introducir un número entero válido.");
 						scanner.next();
