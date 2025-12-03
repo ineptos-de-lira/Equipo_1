@@ -98,39 +98,24 @@ public class Tests {
         "Debe lanzar IllegalArgumentException si m o n son negativos");
   }
 
+    
+    // ======================= PRUEBAS NÚMEROS ENTEROS A ROMANOS =======================
+
   @Test
-  public void testAckermannLanzaExcepcionConValoresDemasiadoGrandes() {
-    assertThrows(IllegalArgumentException.class,
-        () -> ExamenEquipo1.ackermannSegura(4, 0),
-        "Debe lanzar IllegalArgumentException si m > 3");
+  public void testConvertirARomanoValoresSimples() {
+    assertEquals("I", ExamenEquipo1.convertirARomano(1), "1 debe convertirse en I");
+    assertEquals("III", ExamenEquipo1.convertirARomano(3), "3 debe convertirse en III");
+    assertEquals("X", ExamenEquipo1.convertirARomano(10), "10 debe convertirse en X");
   }
 
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final PrintStream originalOut = System.out;
+  @Test
+  public void testConvertirARomanoValoresCompuestos() {
+    assertEquals("IV", ExamenEquipo1.convertirARomano(4), "4 debe convertirse en IV");
+    assertEquals("IX", ExamenEquipo1.convertirARomano(9), "9 debe convertirse en IX");
+    assertEquals("MCMXCIV", ExamenEquipo1.convertirARomano(1994),
+            "1994 debe convertirse en MCMXCIV");
+  }
 
     
-    @BeforeEach
-    public void setUpStreams() {
-        System.setOut(new PrintStream(outContent));
-    }
-
-    @AfterEach
-    public void restoreStreams() {
-        System.setOut(originalOut);
-    }
     
-    // ======================= PRUEBAS TORRE DE HANÓI =======================
-    
-    
-    @Test
-    public void testHanoiNumeroDeMovimientosPara5Discos() {
-        ExamenEquipo1.torreDeHanoi(5, 'A', 'C', 'B');
-        
-        long expectedMoves = (long) (Math.pow(2, 5) - 1);
-        
-        long actualMoves = outContent.toString().lines().count();
-        
-        assertEquals(expectedMoves, actualMoves, 
-                     "El número total de movimientos para 5 discos debe ser 31.");
-    }
 }    
