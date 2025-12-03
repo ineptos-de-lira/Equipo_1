@@ -1,5 +1,10 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class Tests {
@@ -99,4 +104,33 @@ public class Tests {
         () -> ExamenEquipo1.ackermannSegura(4, 0),
         "Debe lanzar IllegalArgumentException si m > 3");
   }
-}
+
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
+
+    
+    @BeforeEach
+    public void setUpStreams() {
+        System.setOut(new PrintStream(outContent));
+    }
+
+    @AfterEach
+    public void restoreStreams() {
+        System.setOut(originalOut);
+    }
+    
+    // ======================= PRUEBAS TORRE DE HANÓI =======================
+    
+    
+    @Test
+    public void testHanoiNumeroDeMovimientosPara5Discos() {
+        ExamenEquipo1.torreDeHanoi(5, 'A', 'C', 'B');
+        
+        long expectedMoves = (long) (Math.pow(2, 5) - 1);
+        
+        long actualMoves = outContent.toString().lines().count();
+        
+        assertEquals(expectedMoves, actualMoves, 
+                     "El número total de movimientos para 5 discos debe ser 31.");
+    }
+}    
